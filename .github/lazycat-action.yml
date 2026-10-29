@@ -37,10 +37,11 @@ images:
     target: service
     service: browserless
     source: ghcr.io/browserless/chromium
-    channel: custom
-    sort: created
-    tag_regex: '^latest$'
-    bump: patch
+    channel: stable
+    sort: semver
+    tag_regex: '^v2\.6\.0$'
+    max_tags: 50000
+    max_matching_tags: 50000
     delivery:
       mode: mirror
       require_digest_match: true
@@ -48,10 +49,13 @@ images:
     target: service
     service: redis
     source: docker.io/library/redis
-    channel: custom
-    sort: created
-    tag_regex: '^alpine$'
-    bump: patch
+    channel: stable
+    sort: semver
+    tag_regex: '^8\.2-alpine$'
+    version_regex: '^(?P<version>8\.2)-alpine$'
+    version_template: '{version}.0'
+    max_tags: 50000
+    max_matching_tags: 50000
     delivery:
       mode: mirror
       require_digest_match: true

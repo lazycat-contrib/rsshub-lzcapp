@@ -24,8 +24,8 @@ services:
       - browserless
 
   browserless:
-    # upstream: ghcr.io/browserless/chromium:latest
-    image: ghcr.1ms.run/browserless/chromium:latest
+    # upstream: ghcr.io/browserless/chromium:v2.6.0
+    image: ghcr.1ms.run/browserless/chromium:v2.6.0
     environment:
       - TOKEN={{ stable_secret "browserless_token" }}
     healthcheck:
@@ -36,8 +36,8 @@ services:
       start_period: 30s
 
   redis:
-    # upstream: docker.io/library/redis:alpine
-    image: docker.1ms.run/library/redis:alpine
+    # upstream: docker.io/library/redis:8.2-alpine
+    image: docker.1ms.run/library/redis:8.2-alpine
     command: redis-server --appendonly yes
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping || exit 1"]
