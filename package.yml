@@ -1,0 +1,18 @@
+package: community.lazycat.app.rsshub
+version: 2026.10.29
+name: RSSHub
+description: RSS feed generator for everything - turn websites into RSS feeds with thousands of routes
+min_os_version: "1.5.0"
+homepage: https://github.com/DIYgod/RSSHub
+author: DIYgod
+license: AGPL-3.0
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: RSSHub
+    description: 万物皆可 RSS：为不支持 RSS 的网站生成订阅源，数千条路由覆盖资讯、社交媒体、追番等
+  en:
+    name: RSSHub
+    description: RSS feed generator for everything - turn websites into RSS feeds with thousands of routes

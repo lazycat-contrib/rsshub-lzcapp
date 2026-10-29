@@ -1,0 +1,55 @@
+application:
+  subdomain: rsshub
+  multi_instance: false
+  public_path:
+    - /
+
+services:
+  rsshub:
+    # upstream: docker.io/diygod/rsshub:2026-10-29
+    image: docker.1ms.run/diygod/rsshub:2026-10-29
+    environment:
+      - NODE_ENV=production
+      - CACHE_TYPE=redis
+      - REDIS_URL=redis://redis:6379/
+      - PLAYWRIGHT_CDP_ENDPOINT=ws://browserless:3000?token={{ stable_secret "browserless_token" }}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:1200/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    depends_on:
+      - redis
+      - browserless
+
+  browserless:
+    # upstream: ghcr.io/browserless/chromium:latest
+    image: ghcr.1ms.run/browserless/chromium:latest
+    environment:
+      - TOKEN={{ stable_secret "browserless_token" }}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f \"http://localhost:3000/pressure?token=$$TOKEN\" || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  redis:
+    # upstream: docker.io/library/redis:alpine
+    image: docker.1ms.run/library/redis:alpine
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    binds:
+      - /lzcapp/var/redis:/data
+
+usage: |
+  RSSHub 把不支持 RSS 的网站变成可订阅的源：打开后按路由访问即可，
+  例如 /bilibili/user/video/UID 生成 B 站 UP 主投稿源。
+  路由文档见 docs.rsshub.app。部分路由需要额外配置 Cookie/Token 才能使用。
+  配合懒猫商店里的 RSS 阅读器（笺川等）使用效果更佳。
