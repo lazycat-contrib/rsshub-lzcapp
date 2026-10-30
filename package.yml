@@ -1,5 +1,5 @@
 package: community.lazycat.app.rsshub
-version: 2026.10.29
+version: 2026.10.30
 name: RSSHub
 description: RSS feed generator for everything - turn websites into RSS feeds with thousands of routes
 min_os_version: "1.5.0"

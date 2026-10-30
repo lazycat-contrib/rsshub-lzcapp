@@ -3,11 +3,10 @@ application:
   multi_instance: false
   public_path:
     - /
-
 services:
   rsshub:
-    # upstream: docker.io/diygod/rsshub:2026-10-29
-    image: docker.1ms.run/diygod/rsshub:2026-10-29
+    # upstream: docker.io/diygod/rsshub:2026-10-30
+    image: docker.1ms.run/diygod/rsshub:2026-10-30
     environment:
       - NODE_ENV=production
       - CACHE_TYPE=redis
@@ -22,7 +21,6 @@ services:
     depends_on:
       - redis
       - browserless
-
   browserless:
     # upstream: ghcr.io/browserless/chromium:v2.6.0
     image: ghcr.1ms.run/browserless/chromium:v2.6.0
@@ -34,7 +32,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
-
   redis:
     # upstream: docker.io/library/redis:8.2-alpine
     image: docker.1ms.run/library/redis:8.2-alpine
@@ -47,7 +44,6 @@ services:
       start_period: 5s
     binds:
       - /lzcapp/var/redis:/data
-
 usage: |
   RSSHub 把不支持 RSS 的网站变成可订阅的源：打开后按路由访问即可，
   例如 /bilibili/user/video/UID 生成 B 站 UP 主投稿源。
