@@ -5,8 +5,8 @@ application:
     - /
 services:
   rsshub:
-    # upstream: docker.io/diygod/rsshub:2026-11-03
-    image: docker.1ms.run/diygod/rsshub:2026-11-03
+    # upstream: docker.io/diygod/rsshub:2026-11-04
+    image: docker.1ms.run/diygod/rsshub:2026-11-04
     environment:
       - NODE_ENV=production
       - CACHE_TYPE=redis
