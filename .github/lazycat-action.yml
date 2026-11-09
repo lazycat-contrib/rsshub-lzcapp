@@ -65,6 +65,6 @@ stores:
     enabled: false
   private:
     enabled: true
-    skip_if_version_exists: true
+    skip_if_version_exists: false
     name: RSSHub
     summary: 万物皆可 RSS，为网站生成订阅源
