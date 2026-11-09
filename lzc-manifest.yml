@@ -3,6 +3,9 @@ application:
   multi_instance: false
   public_path:
     - /
+  upstreams:
+    - location: /
+      backend: http://rsshub:1200/
 services:
   rsshub:
     # upstream: docker.io/diygod/rsshub:2026-11-08
