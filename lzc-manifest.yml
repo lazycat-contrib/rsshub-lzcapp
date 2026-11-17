@@ -8,8 +8,8 @@ application:
       backend: http://rsshub:1200/
 services:
   rsshub:
-    # upstream: docker.io/diygod/rsshub:2026-11-16
-    image: docker.1ms.run/diygod/rsshub:2026-11-16
+    # upstream: docker.io/diygod/rsshub:2026-11-17
+    image: docker.1ms.run/diygod/rsshub:2026-11-17
     environment:
       - NODE_ENV=production
       - CACHE_TYPE=redis
